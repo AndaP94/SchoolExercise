@@ -1,6 +1,6 @@
 /**
 * @author Andreas Pichler
-*
+* @version 5.3.18
 *
 */
 public class MyListMain {
@@ -157,7 +157,7 @@ class Element<a>{
 		this.prev = prev;
 	}
 	/**
-	* to String the elements 
+	* to String the element
 	*/
 	public String toString(Element<a> el){
 		String string = new String();

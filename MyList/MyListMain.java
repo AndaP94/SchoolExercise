@@ -1,45 +1,45 @@
 /**
 * @author Andreas Pichler
 *
-*	Dies ist eine Klasse einer Liste mit Index
+*
 */
 public class MyListMain {
 
 	public static void main(String[] args) {
-		MyList<String> mList = new MyList<>();
-		//Bsp
+		MyList<Integer> mList = new MyList<>();
+		//Example
 		mList.printAll();
 
-		mList.add("Sepp");
+		mList.add(1);
 		mList.printAll();
-		mList.add("Anton");
+		mList.add(2);
 		mList.printAll();
-		mList.add("Josef");
+		mList.add(52);
 		mList.printAll();
-		mList.add("Andi");
+		mList.add(100);
 		mList.printAll();
 
 		mList.remove(3);
 		mList.printAll();
-		mList.add("Kevin");
+		mList.add(88);
 		System.out.println(mList);
 		System.out.println("----------------------");
-		Element<String> get = mList.get(1);
+		Element<Integer> get = mList.get(1);
 		System.out.println(get.toString(get));
-
 	}
-
 }
 /**
-* Listen Klasse mit Mehoden
-* @param Elemet<a> first
-* @param Elemet<a> last
-*
-*
+* This is a List like a Linked List
+* Class with the methods
 */
 class MyList<a>{
-
+	/**
+	* Element<a> first is the first Element in the list
+	*/
 	Element<a> first;
+	/**
+	* Element<a> last is the last Element in the list
+	*/
 	Element<a> last;
 
 	public MyList() {
@@ -47,21 +47,24 @@ class MyList<a>{
 		this.first = null;
 		this.last = null;
 	}
-
+	/**
+	* add a element to the list with the
+	* @param val new element
+	*/
 	public void add(a val){
 		Element<a> el = new Element<>(val);
-		if(this.first == null){
+		if(this.first == null){ //if the list is empty element is first
 			this.first = el;
 			this.last = el;
 		}
 		else{
-			el.setPrev(this.last);			//setzte das prev auf this.last --> wird in Zeile 40 dann neu auf das letzte gesetzt
-			this.last.setNext(el);    		//das letzte last zeigt auf das next mit der neuen Variable
+			el.setPrev(this.last);			//set prev to this.last --> is the last element of the list
+			this.last.setNext(el);
 			this.last = el;
 		}
 	}
 	/**
-	*	Listet alle Elemente der Liste
+	*	print all elements from the list
 	*
 	*/
 	public void printAll(){
@@ -73,7 +76,7 @@ class MyList<a>{
 		System.out.println("------------------");
 	}
 	/**
-	*	Gibt die Gsamte Liste in einem String aus.
+	*	list the whole list to String
 	*	@return String e
 	*/
 	public String toString(){
@@ -86,17 +89,18 @@ class MyList<a>{
 		return e;
 	}
 	/**
-	*	Löscht Element mit dem gegebenen Parameter a
-	* @param int a
+	*	Remove a element from the list with the index
+	* @param index
 	*
 	*/
-	public void remove(int a) {
+	public void remove(int index) {
 		int remove=0;
 		Element<a> el = this.first;
-		while(remove < a) {
+		while(remove < index) {
 			el=el.getNext();
 			remove++;
 		}
+		//if the it is the first element. set null is removed
 		if (this.first == el) {
 			this.first = el.getNext();
 			this.first.setPrev(null);
@@ -113,6 +117,10 @@ class MyList<a>{
 			el.getNext().setPrev(el.getPrev());
 		}
 	}
+	/**
+	* get a element from the list with the index
+	* @param index
+	*/
 	public Element<a> get(int index){
 		int count=0;
 		Element<a> el = this.first;
@@ -124,9 +132,7 @@ class MyList<a>{
 	}
 }
 /**
-*
 *	Element der Liste <a> beliebiger Datentype
-*
 */
 class Element<a>{
 	Element<a> next;
@@ -150,6 +156,9 @@ class Element<a>{
 	public void setPrev(Element<a> prev) {
 		this.prev = prev;
 	}
+	/**
+	* to String the elements 
+	*/
 	public String toString(Element<a> el){
 		String string = new String();
 		string=String.valueOf(el.value);
